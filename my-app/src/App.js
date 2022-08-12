@@ -2,13 +2,17 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const scholar = ["Zakir Nayek", "Mizanur Rahman", "Ahmad Ullah"]
+  const scholar = ["Zakir Nayek", "Mizanur Rahman", "Ahmad Ullah", "Noman Ali Khan"] 
   const Products = [
     {name: "Photoshop", price: "45.00$"},
     {name: "illustrator", price: "145$"},
+    {name: "PDF Reader", price: "5$"},
+    {name: "Primer Pro", price: "245$"},
   ]
 
-  const ProductNames = Products.map(proName => Products.name);
+  // const ProductNames = Products.map(product => product.name);
+  // const scolarNames =  scholar.map(scol => scol);
+  // console.log(scolarNames);
 
 //   var person ={ name: "Tamim Mahmud",
 //                 age: 30,
@@ -23,8 +27,23 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Product product={Products[0]}></Product>
+        <ul>{
+          scholar.map(schol => <li>{schol}</li>)
+        }
+          {/* <li>{scholar[0]}</li>
+          <li>{scholar[1]}</li>
+          <li>{scholar[2]}</li> */
+        }
+        {
+          Products.map(products => <li>{products.name}</li>)
+        }
+        </ul>
+        {
+          Products.map(pd => <Product product={pd}></Product>)
+        }
+        {/* <Product product={Products[0]}></Product>
         <Product product={Products[1]}></Product>
+        <Product product={Products[2]}></Product> */}
         {/* <Product proName={Products[1].name} price={Products[1].price}></Product> */}
         {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -111,6 +130,5 @@ const {name, price} = props.product;
     </div>
   )
 }
-
 
 export default App;
