@@ -5,9 +5,9 @@ function App() {
   const allName = ["Salman", "Arman", "Swhadhin"]
   return (
     <div className="App">
-      <Nayok name={allName[0]}></Nayok>
-      <Nayok name="Sakib"></Nayok>
-      <Nayok name="Salman"></Nayok>
+      <Nayok name={allName[0]} age="45"></Nayok>
+      <Nayok name={allName[1]}></Nayok>
+      <Nayok name="Solim Uddin"></Nayok>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
   
@@ -23,7 +23,7 @@ const nayokStyle ={
   return (
     <div style={nayokStyle}>
     <h1>I am Nayok {props.name}</h1>
-    <h3>I have done 5 Movies</h3>
+    <h3>I have done 5 Movies in {props.age || 30} years</h3>
     </div>
   )
 }
