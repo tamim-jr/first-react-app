@@ -1,42 +1,45 @@
+import React, { useEffect, useState, useTransition } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const scholar = ["Zakir Nayek", "Mizanur Rahman", "Ahmad Ullah", "Noman Ali Khan"] 
+  const scholar = ["Zakir Nayek", "Mizanur Rahman", "Ahmad Ullah", "Noman Ali Khan"]
   const Products = [
-    {name: "Photoshop", price: "45.00$"},
-    {name: "illustrator", price: "145$"},
-    {name: "PDF Reader", price: "5$"},
-    {name: "Primer Pro", price: "245$"},
+    { name: "Photoshop", price: "45.00$" },
+    { name: "illustrator", price: "145$" },
+    { name: "PDF Reader", price: "5$" },
+    { name: "Primer Pro", price: "245$" },
   ]
 
   // const ProductNames = Products.map(product => product.name);
   // const scolarNames =  scholar.map(scol => scol);
   // console.log(scolarNames);
 
-//   var person ={ name: "Tamim Mahmud",
-//                 age: 30,
-//                 profession: "Programing ",              
-// }
-// var style ={
-//   color : "#61DAFB",
-//   backgroundColor : "green",
-//   padding: 15,
-//   borderRadius : 8,
-// }
+  //   var person ={ name: "Tamim Mahmud",
+  //                 age: 30,
+  //                 profession: "Programing ",              
+  // }
+  // var style ={
+  //   color : "#61DAFB",
+  //   backgroundColor : "green",
+  //   padding: 15,
+  //   borderRadius : 8,
+  // }
   return (
     <div className="App">
       <header className="App-header">
+        <Counter></Counter>
+        <Users></Users>
         <ul>{
           scholar.map(schol => <li>{schol}</li>)
         }
           {/* <li>{scholar[0]}</li>
           <li>{scholar[1]}</li>
           <li>{scholar[2]}</li> */
-        }
-        {
-          Products.map(products => <li>{products.name}</li>)
-        }
+          }
+          {
+            Products.map(products => <li>{products.name}</li>)
+          }
         </ul>
         {
           Products.map(pd => <Product product={pd}></Product>)
@@ -109,17 +112,17 @@ function App() {
 // }
 
 
-function Product(props){
+function Product(props) {
   const ProductStyle = {
     border: "1px solid gray",
     borderRadius: "5px",
     backgroundColor: "lightgray",
     height: "300px",
     width: "300px",
-    float : "left",
+    float: "left",
     color: "black"
   }
-const {name, price} = props.product;
+  const { name, price } = props.product;
   return (
     <div style={ProductStyle}>
       {/* <h2>{props.product.name}</h2> */}
@@ -131,4 +134,37 @@ const {name, price} = props.product;
   )
 }
 
+//Counter in JavaScript React
+function Counter() {
+  const [count, setCount] = useState(0);
+  // const handleClick = () => { setCount (count + 1);
+  // const newCount = count + 1;
+  // setCount (newCount);
+
+  return (
+    <div>
+      <h2>Counter: {count}</h2>
+      <button onClick={() => setCount(count - 1)}>Decrease</button>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+    </div>
+  )
+}
+
+function Users() {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data => setUsers(data));
+  }, [])
+  return (
+    <div>
+      <h2>User Name: {users.length}</h2>
+      {
+        users.map(user => <li>{user.name}</li>)
+        // users.map(user => <li>{user.phone}</li>)
+      }
+    </div>
+  )
+}
 export default App;
